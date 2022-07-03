@@ -1,0 +1,24 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">202 Awesome Stroke Icons</h4>
+                        <p class="category">Handcrafted by our friends from <a target="_blank" href="http://themes-pixeden.com/font-demos/7-stroke/index.html">Pixeden</a></p>
+                    </div>
+                    <div class="content all-icons">
+                        <div class="row" *ngIf="brands">
+                            <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" *ngFor="let brand of brands">
+                                <div class="font-icon-detail" (click)="onBrand(brand._id)">
+                                    <i class="pe-7s-album"></i>
+                                    <div>{{brand.name}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
