@@ -2,7 +2,7 @@ import {Router} from "express";
 import brandRouter from "./brand.router";
 import tobaccoRouter from "./tobacco.router";
 
-export const router = Router();
+export const baseRouter = Router();
 
-router.use('/brand', brandRouter);
-router.use('/tobacco', tobaccoRouter);
+baseRouter.use('/brand', brandRouter);
+baseRouter.use('/tobacco', tobaccoRouter);

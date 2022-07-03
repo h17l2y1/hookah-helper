@@ -12,8 +12,12 @@ export const updateTobaccoRepository = async (id: string, body: UpdateTobaccoDto
     return await tobaccoSchema.findByIdAndUpdate(id, body);
 }
 
-export const getTobaccoByIdRepository = async (id: string) => {
+export const getByIdTobaccoRepository = async (id: string) => {
     return await tobaccoSchema.findById(id);
+}
+
+export const getByBrandIdTobaccoRepository = async (id: string) => {
+    return await tobaccoSchema.find({ brandId: id });
 }
 
 export const getAllTobaccoRepository = async () => {

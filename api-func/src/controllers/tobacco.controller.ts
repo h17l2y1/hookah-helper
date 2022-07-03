@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
 import {
     createTobaccoService, deleteTobaccoService,
-    getAllTobaccoService,
+    getAllTobaccoService, getByBrandIdTobaccoService,
     getByIdTobaccoService,
     updateTobaccoService
 } from "../services/tobacco.service";
@@ -14,7 +14,7 @@ export const createTobacco = (req: Request, res: Response, next: NextFunction) =
 
 export const updateTobacco = (req: Request, res: Response, next: NextFunction) => {
     updateTobaccoService(req.params.id, req.body)
-        .then((data) => res.status(201).send(data))
+        .then(() => res.status(200).send())
         .catch((err: Error) => next(err));
 }
 
@@ -32,6 +32,6 @@ export const getAllTobacco = (req: Request, res: Response, next: NextFunction) =
 
 export const deleteTobacco = (req: Request, res: Response, next: NextFunction) => {
     deleteTobaccoService(req.params.id)
-        .then(res.status(200).send)
+        .then(() => res.status(200).send())
         .catch((err: Error) => next(err));
 }

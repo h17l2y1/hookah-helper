@@ -5,7 +5,8 @@ import {
     getAllTobacco,
     getByIdTobacco,
     updateTobacco
-} from "../controllers/tobacco.controller";
+} from "../tobacco.controller";
+import {getByBrandIdTobaccoRepository} from "../../repositories/tobacco.repository";
 
 const tobaccoRouter = Router();
 
