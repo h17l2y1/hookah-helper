@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
-import { CreateBrandComponent } from './create-brand/create-brand.component';
+import { CreateTobaccoComponent } from './create-tobacco/create-tobacco.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -9,9 +9,11 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
-  declarations: [AdminComponent, CreateBrandComponent],
+  declarations: [AdminComponent, CreateTobaccoComponent],
     imports: [
         CommonModule,
         MatButtonModule,
@@ -20,7 +22,9 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
         MatToolbarModule,
         MatCardModule,
         MatListModule,
-        MatProgressBarModule
+        MatProgressBarModule,
+        ReactiveFormsModule,
+        MatDialogModule
     ]
 })
 export class AdminModule { }

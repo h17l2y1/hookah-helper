@@ -10,7 +10,6 @@ export interface Tobacco {
     taste: string;
     madeIn: string;
     fortress: number;
-    recommendedCup: string;
     smokiness: number;
     creationDate: string;
 }

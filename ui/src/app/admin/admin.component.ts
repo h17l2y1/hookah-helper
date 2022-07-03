@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {CreateBrandComponent} from "./create-brand/create-brand.component";
+import {CreateTobaccoComponent} from "./create-tobacco/create-tobacco.component";
 
 @Component({
   selector: 'app-admin',
@@ -14,16 +14,16 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public onCreateBrand(): void {
-    const dialogRef = this.dialog.open(CreateBrandComponent, {
-      width: '250px',
+  public onCreateTobacco(): void {
+    const dialogRef = this.dialog.open(CreateTobaccoComponent, {
+      width: '70%',
       data: {},
     });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 
 }
