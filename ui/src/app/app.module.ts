@@ -10,6 +10,7 @@ import { SidebarModule } from './core/sidebar/sidebar.module';
 import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './core/main-layout/main-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterModule,
     SidebarModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ToastrModule.forRoot()
   ],
   declarations: [
     AppComponent,
