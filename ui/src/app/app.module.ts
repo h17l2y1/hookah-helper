@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarModule } from './core/shared/navbar/navbar.module';
@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './core/main-layout/main-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
+import {ErrorInterceptor} from "./core/services/error-interceptor";
 
 @NgModule({
   imports: [
@@ -29,7 +30,12 @@ import {ToastrModule} from "ngx-toastr";
     AppComponent,
     MainLayoutComponent
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+  ],  bootstrap: [AppComponent]
 })
 export class AppModule { }

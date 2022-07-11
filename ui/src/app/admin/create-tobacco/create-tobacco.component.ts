@@ -4,6 +4,11 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatDialogRef} from "@angular/material/dialog";
 import {TobaccoService} from "../../core/services/tobacco.service";
+import {ToastrService} from "ngx-toastr";
+import {CreateTobacco} from "../../core/dto/tobacco/create-tobacco.dto";
+import { Inject, Injector } from "@angular/core";
+
+
 
 @Component({
     selector: 'app-create-tobacco',
@@ -20,9 +25,13 @@ export class CreateTobaccoComponent implements OnInit {
     // imageInfos?: Observable<any>;
     public createTobaccoForm: FormGroup;
 
-    // constructor(private uploadService: FileUploadService) { }
     constructor(public dialogRef: MatDialogRef<CreateTobaccoComponent>,
-                private tobaccoService: TobaccoService) {
+                private tobaccoService: TobaccoService,
+                private notificationService: ToastrService,
+                // private uploadService: FileUploadService,
+                @Inject(Injector) private injector: Injector,
+                ) {
+        this.notificationService = this.injector.get(ToastrService)
     }
 
     ngOnInit(): void {
@@ -49,21 +58,11 @@ export class CreateTobaccoComponent implements OnInit {
     }
 
     onSave(): void {
-        let newTobacco = this.createTobaccoForm.value;
-        // this.tobaccoService.create(newTobacco).subscribe(() => {
-        // }, err => {
-        //     console.log('Error: ', err)
-        // });
+        let newTobacco = this.createTobaccoForm.value as CreateTobacco;
 
         this.tobaccoService.create(newTobacco).subscribe({
             next(x) {
-                console.log('got value ' + x);
-            },
-            error(err) {
-                console.error('something wrong occurred: ' + err);
-            },
-            complete() {
-                console.log('done');
+                this.notificationService.success(`${newTobacco.name} created`);
             }
         });
 
