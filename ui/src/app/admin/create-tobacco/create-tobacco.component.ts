@@ -7,6 +7,8 @@ import {TobaccoService} from "../../core/services/tobacco.service";
 import {ToastrService} from "ngx-toastr";
 import {CreateTobacco} from "../../core/dto/tobacco/create-tobacco.dto";
 import { Inject, Injector } from "@angular/core";
+import {BrandService} from "../../core/services/brand.service";
+import {Tobacco} from "../../core/dto/tobacco";
 
 
 
@@ -24,19 +26,29 @@ export class CreateTobaccoComponent implements OnInit {
     // previews: string[] = [];
     // imageInfos?: Observable<any>;
     public createTobaccoForm: FormGroup;
+    public brands: Array<Tobacco>;
+    // public lines: Array<TobaccoLine>;
 
-    constructor(public dialogRef: MatDialogRef<CreateTobaccoComponent>,
+    constructor(@Inject(Injector) private injector: Injector,
+                public dialogRef: MatDialogRef<CreateTobaccoComponent>,
                 private tobaccoService: TobaccoService,
                 private notificationService: ToastrService,
+                private brandService: BrandService,
                 // private uploadService: FileUploadService,
-                @Inject(Injector) private injector: Injector,
                 ) {
         this.notificationService = this.injector.get(ToastrService)
     }
 
     ngOnInit(): void {
-        this.initCreateTobaccoForm();
+        this.initCreateTobaccoData();
         // this.imageInfos = this.uploadService.getFiles();
+    }
+
+    initCreateTobaccoData(): void {
+        this.brandService.getAll().subscribe(response => {
+            this.brands = response;
+            this.initCreateTobaccoForm();
+        })
     }
 
     initCreateTobaccoForm(): void {
@@ -58,6 +70,10 @@ export class CreateTobaccoComponent implements OnInit {
     }
 
     onSave(): void {
+        if (!this.createTobaccoForm.valid){
+            return;
+        }
+
         let newTobacco = this.createTobaccoForm.value as CreateTobacco;
 
         this.tobaccoService.create(newTobacco).subscribe({

@@ -1,6 +1,6 @@
 import {BaseEntity} from "./base";
 
-export interface Tobacco extends BaseEntity{
+export interface Tobacco extends BaseEntity {
     brandId: string;
     name: string;
     lineId: string;
