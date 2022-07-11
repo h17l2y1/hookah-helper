@@ -16,7 +16,7 @@ export class AdminComponent implements OnInit {
 
   public onCreateTobacco(): void {
     const dialogRef = this.dialog.open(CreateTobaccoComponent, {
-      width: '70%',
+      width: '37%',
       data: {},
     });
 

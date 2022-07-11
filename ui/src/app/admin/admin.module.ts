@@ -12,6 +12,8 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ToastrModule} from "ngx-toastr";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [AdminComponent, CreateTobaccoComponent],
@@ -26,7 +28,10 @@ import {ToastrModule} from "ngx-toastr";
         MatProgressBarModule,
         ReactiveFormsModule,
         MatDialogModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        MatOptionModule,
+        MatSelectModule,
+
     ]
 })
 export class AdminModule { }

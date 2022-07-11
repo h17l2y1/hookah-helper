@@ -12,6 +12,7 @@ import { MainLayoutComponent } from './core/main-layout/main-layout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
 import {ErrorInterceptor} from "./core/services/error-interceptor";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {ErrorInterceptor} from "./core/services/error-interceptor";
     SidebarModule,
     AppRoutingModule,
     NgbModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
