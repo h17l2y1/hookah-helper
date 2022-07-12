@@ -1,0 +1,34 @@
+<form [formGroup]="createBrandForm" (ngSubmit)="onSave()" class="example-form">
+    <div mat-dialog-content class="input-container">
+        <div class="brand-name-container">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Назва бренду</mat-label>
+                <input matInput formControlName="name">
+            </mat-form-field>
+            <button mat-raised-button color="primary" class="add-line-btn" (click)="addLine()">Нова лiнiйка</button>
+        </div>
+        <div formArrayName="lines">
+            <div *ngFor="let line of getLines.controls; let i=index">
+                <div [formGroupName]="i">
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Назва лiнiйки</mat-label>
+                        <input formControlName="name" matInput>
+                    </mat-form-field>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Країна виробник</mat-label>
+            <input matInput formControlName="madeIn">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Опис</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button (click)="onCancel()">Вiдмiнити</button>
+        <button mat-raised-button color="primary" cdkFocusInitial type="submit">Створити</button>
+    </div>
+</form>

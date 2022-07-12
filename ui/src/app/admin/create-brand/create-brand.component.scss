@@ -1,0 +1,12 @@
+.example-full-width {
+  width: 100%;
+}
+
+.brand-name-container{
+  display: flex;
+  .add-line-btn {
+    height: 52px;
+    min-width: 120px;
+    margin-left: 15px;
+  }
+}

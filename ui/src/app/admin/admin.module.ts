@@ -14,9 +14,11 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {ToastrModule} from "ngx-toastr";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
+import { CreateBrandComponent } from './create-brand/create-brand.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-  declarations: [AdminComponent, CreateTobaccoComponent],
+  declarations: [AdminComponent, CreateTobaccoComponent, CreateBrandComponent],
     imports: [
         CommonModule,
         MatButtonModule,
@@ -31,7 +33,7 @@ import {MatSelectModule} from "@angular/material/select";
         ToastrModule.forRoot(),
         MatOptionModule,
         MatSelectModule,
-
+        MatIconModule
     ]
 })
 export class AdminModule { }
