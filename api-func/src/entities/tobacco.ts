@@ -13,4 +13,5 @@ export interface Tobacco extends BaseEntity {
     madeIn: string;
     fortress: number;
     smokiness: number;
+    description: string;
 }
