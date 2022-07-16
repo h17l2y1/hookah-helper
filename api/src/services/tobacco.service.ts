@@ -1,37 +1,30 @@
-import {Injectable} from '@nestjs/common';
-import {Tobacco, TobaccoDocument} from '../schemas/tobacco.schema';
-import {InjectModel} from '@nestjs/mongoose';
-import {CreateTobaccoDto} from '../dto/create-tobacco.dto';
-import {Model} from 'mongoose';
+import {UpdateTobaccoDto} from "../models/tobacco/update-tobacco.dto";
+import {CreateTobaccoDto} from "../models/tobacco/create-tobacco.dto";
+import repository from "../repositories/tobacco.repository";
 
-@Injectable()
-export class TobaccoService {
-  constructor(
-    @InjectModel(Tobacco.name)
-    private readonly tobaccoModel: Model<TobaccoDocument>,
-  ) {}
-
-  async create(request: CreateTobaccoDto): Promise<Tobacco> {
-    // request.creationDate = moment().format('DD-MM-YYYY hh:mm:ss');
-    return await this.tobaccoModel.create(request);
-  }
-
-  async getAll(): Promise<Array<Tobacco>> {
-    return this.tobaccoModel.find().exec();
-  }
-
-  // @UseFilters(MongoExceptionFilter)
-  async getAllByBrandId(brandId: string): Promise<Array<Tobacco>>{
-    return this.tobaccoModel.find({brandId: brandId}).exec();
-  }
-
-  async getById(id: string): Promise<Tobacco> {
-    return this.tobaccoModel.findOne({ _id: id }).exec();
-  }
-
-  async delete(id: string) {
-    return await this.tobaccoModel
-        .findByIdAndRemove({_id: id})
-        .exec();
-  }
+const create = async (body: CreateTobaccoDto) => {
+    return await repository.create(body);
 }
+
+const update = async (id: string, body: UpdateTobaccoDto) => {
+    return await repository.update(id, body);
+}
+
+const getById = async (id: string) => {
+    return await repository.getById(id);
+}
+
+const getByBrandId = async (id: string) => {
+    return await repository.getByBrandId(id);
+}
+
+const getAll = async () => {
+    return await repository.getAll();
+}
+
+const remove = async (id: string) => {
+    return await repository.remove(id);
+}
+
+export default { create, update, getById, getByBrandId, getAll, remove };
+

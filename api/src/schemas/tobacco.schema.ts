@@ -1,36 +1,19 @@
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Document} from 'mongoose';
-import * as mongoose from 'mongoose';
-import {BaseSchema} from "./base-schema.schema";
+import {model, Schema} from "mongoose";
+import {Tobacco} from "../entities/tobacco";
 
-export type TobaccoDocument = Tobacco & Document;
+const tobaccoSchema = new Schema<Tobacco>({
+    brandId: {type: String, required: true},
+    lineId: {type: String, required: true},
+    creationDate: {type: String, required: true},
+    name: {type: String, required: true},
+    sweetness: {type: Number},
+    acidity: {type: Number},
+    spice: {type: Number},
+    freshness: {type: Number},
+    taste: {type: String},
+    fortress: {type: Number},
+    smokiness: {type: Number},
+    description: {type: String}
+});
 
-@Schema()
-export class Tobacco extends BaseSchema {
-    @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'Brand'})
-    brandId: string;
-    @Prop({required: true})
-    name: string;
-    @Prop()
-    sweetness: number;
-    @Prop()
-    acidity: number;
-    @Prop()
-    spice: number;
-    @Prop()
-    freshness: number;
-    @Prop()
-    rating: number;
-    @Prop()
-    taste: string;
-    @Prop()
-    madeIn: string;
-    @Prop()
-    fortress: number;
-    @Prop()
-    recommendedCup: string;
-    @Prop()
-    smokiness: number;
-}
-
-export const TobaccoSchema = SchemaFactory.createForClass(Tobacco);
+export default model<Tobacco>('Tobacco', tobaccoSchema);

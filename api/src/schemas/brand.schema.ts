@@ -1,13 +1,11 @@
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Document} from 'mongoose';
-import {BaseSchema} from "./base-schema.schema";
+import {Schema, model} from "mongoose";
+import {Brand} from "../entities/brand";
 
-export type BrandDocument = Brand & Document;
+const brandSchema = new Schema<Brand>({
+    name: {type: String, required: true},
+    madeIn: {type: String, required: true},
+    creationDate: {type: String, required: true},
+    description: {type: String}
+});
 
-@Schema()
-export class Brand extends BaseSchema {
-    @Prop()
-    name: string;
-}
-
-export const BrandSchema = SchemaFactory.createForClass(Brand);
+export default model<Brand>('Brands', brandSchema);
