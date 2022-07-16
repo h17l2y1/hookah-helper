@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {Tobacco} from "../dto/tobacco";
+import {Tobacco} from "../dto/tobacco/tobacco";
 import {CreateTobacco} from "../dto/tobacco/create-tobacco.dto";
 
 @Injectable({
@@ -14,8 +14,8 @@ export class TobaccoService {
 
   constructor(private http: HttpClient) { }
 
-  public create(data: CreateTobacco): Observable<any> {
-    return this.http.post<any>(this.rootUrl, data);
+  public create(data: CreateTobacco): Observable<void> {
+    return this.http.post<void>(this.rootUrl, data);
   }
 
   public getAll(): Observable<Array<Tobacco>> {

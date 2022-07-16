@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {TobaccoService} from "../../core/services/tobacco.service";
-import {Tobacco} from "../../core/dto/tobacco";
+import {Tobacco} from "../../core/dto/tobacco/tobacco";
 import {Comment} from "../../core/dto/comment";
 
 @Component({

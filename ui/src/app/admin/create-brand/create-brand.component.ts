@@ -2,7 +2,8 @@ import {Component, Inject, Injector, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
 import {BrandService} from "../../core/services/brand.service";
-import {FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
+import {CreateBrand} from "../../core/dto/brand/create-brand.dto";
 
 @Component({
   selector: 'app-create-brand',
@@ -51,7 +52,9 @@ export class CreateBrandComponent implements OnInit {
   }
 
   onSave(): void {
+    const request = this.createBrandForm.value as CreateBrand;
 
+    this.brandService.create(request)
   }
 
   onCancel(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Tobacco} from "../core/dto/tobacco";
-import {Brand} from "../core/dto/brand";
+import {Tobacco} from "../core/dto/tobacco/tobacco";
+import {Brand} from "../core/dto/brand/brand";
 import {TobaccoService} from "../core/services/tobacco.service";
 import {BrandService} from "../core/services/brand.service";
 import {Router} from "@angular/router";

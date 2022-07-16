@@ -1,28 +1,26 @@
 import {CreateBrandDto} from "../models/brands/create-brand.dto";
 import {UpdateBrandDto} from "../models/brands/update-brand.dto";
-import {
-    createBrandRepository, deleteBrandRepository,
-    getAllBrandsRepository,
-    getBrandByIdRepository,
-    updateBrandRepository
-} from "../repositories/brand.repository";
+import repository from "../repositories/brand.repository";
 
-export const createBrandService = async (body: CreateBrandDto) => {
-    return await createBrandRepository(body);
+const create = async (body: CreateBrandDto) => {
+    return await repository.create(body);
 }
 
-export const updateBrandService = async (id: string, body: UpdateBrandDto) => {
-    return await updateBrandRepository(id, body);
+const update = async (id: string, body: UpdateBrandDto) => {
+    return await repository.update(id, body);
 }
 
-export const getBrandByIdService = async (id: string) => {
-    return await getBrandByIdRepository(id);
+const getById = async (id: string) => {
+    return await repository.getById(id);
 }
 
-export const getAllBrandsService = async () => {
-    return await getAllBrandsRepository();
+const getAll = async () => {
+    return await repository.getAll();
 }
 
-export const deleteBrandService = async (id: string) => {
-    return await deleteBrandRepository(id);
+const remove = async (id: string) => {
+    return await repository.remove(id);
 }
+
+export default { create, update, getById, getAll, remove };
+

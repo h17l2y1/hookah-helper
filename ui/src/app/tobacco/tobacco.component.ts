@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TobaccoService} from "../core/services/tobacco.service";
-import {Tobacco} from "../core/dto/tobacco";
+import {Tobacco} from "../core/dto/tobacco/tobacco";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {TobaccoInfoComponent} from "./tobacco-info/tobacco-info.component";

@@ -1,20 +1,12 @@
 import {Router} from "express";
-import {
-    createBrand,
-    deleteBrand,
-    getAllBrands,
-    getByBrandIdWithTobacco,
-    getByIdBrand,
-    updateBrand
-} from "../brand.controller";
+import { create, remove, getAll, getById, update } from "../brand.controller";
 
 const brandRouter = Router();
 
-brandRouter.post('/', createBrand);
-brandRouter.put('/:id', updateBrand);
-brandRouter.get('/:id', getByIdBrand);
-brandRouter.get('/:id/tobacco', getByBrandIdWithTobacco);
-brandRouter.get('/', getAllBrands);
-brandRouter.delete('/:id', deleteBrand);
+brandRouter.post('/', create);
+brandRouter.put('/:id', update);
+brandRouter.get('/:id', getById);
+brandRouter.get('/', getAll);
+brandRouter.delete('/:id', remove);
 
 export default brandRouter;

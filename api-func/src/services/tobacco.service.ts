@@ -1,31 +1,30 @@
 import {UpdateTobaccoDto} from "../models/tobacco/update-tobacco.dto";
 import {CreateTobaccoDto} from "../models/tobacco/create-tobacco.dto";
-import {
-    createTobaccoRepository, deleteTobaccoRepository, getAllTobaccoRepository, getByBrandIdTobaccoRepository,
-    getByIdTobaccoRepository,
-    updateTobaccoRepository
-} from "../repositories/tobacco.repository";
+import repository from "../repositories/tobacco.repository";
 
-export const createTobaccoService = async (body: CreateTobaccoDto) => {
-    return await createTobaccoRepository(body);
+const create = async (body: CreateTobaccoDto) => {
+    return await repository.create(body);
 }
 
-export const updateTobaccoService = async (id: string, body: UpdateTobaccoDto) => {
-    return await updateTobaccoRepository(id, body);
+const update = async (id: string, body: UpdateTobaccoDto) => {
+    return await repository.update(id, body);
 }
 
-export const getByIdTobaccoService = async (id: string) => {
-    return await getByIdTobaccoRepository(id);
+const getById = async (id: string) => {
+    return await repository.getById(id);
 }
 
-export const getByBrandIdTobaccoService = async (id: string) => {
-    return await getByBrandIdTobaccoRepository(id);
+const getByBrandId = async (id: string) => {
+    return await repository.getByBrandId(id);
 }
 
-export const getAllTobaccoService = async () => {
-    return await getAllTobaccoRepository();
+const getAll = async () => {
+    return await repository.getAll();
 }
 
-export const deleteTobaccoService = async (id: string) => {
-    return await deleteTobaccoRepository(id);
+const remove = async (id: string) => {
+    return await repository.remove(id);
 }
+
+export default { create, update, getById, getByBrandId, getAll, remove };
+

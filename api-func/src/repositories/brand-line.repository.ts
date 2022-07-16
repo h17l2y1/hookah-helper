@@ -2,26 +2,28 @@ import {CreateBrandLineDto} from "../models/brand-line/create-brand-line.dto";
 import {UpdateBrandLineDto} from "../models/brand-line/update-brand-line.dto";
 import brandLineSchema from "../schemas/brand-line.schema";
 
-export const createBrandLineRepository = async (body: CreateBrandLineDto) => {
+const create = async (body: CreateBrandLineDto) => {
     return await brandLineSchema.create(body);
 }
 
-export const updateBrandLineRepository = async (id: string, body: UpdateBrandLineDto) => {
+const update = async (id: string, body: UpdateBrandLineDto) => {
     return await brandLineSchema.findByIdAndUpdate(id, body);
 }
 
-export const getBrandLineByIdRepository = async (id: string) => {
+const getById = async (id: string) => {
     return await brandLineSchema.findById(id);
 }
 
-export const getAllBrandLinesByBrandIdRepository = async (id: string) => {
+const getByBrandId = async (id: string) => {
     return await brandLineSchema.find({ brandId: id });
 }
 
-export const getAllBrandLinesRepository = async () => {
+const getAll = async () => {
     return await brandLineSchema.find();
 }
 
-export const deleteBrandLineRepository = async (id: string) => {
+const remove = async (id: string) => {
     return await brandLineSchema.findByIdAndDelete(id);
 }
+
+export default { create, update, getById, getByBrandId, getAll, remove };

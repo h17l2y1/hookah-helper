@@ -8,7 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import {CreateTobacco} from "../../core/dto/tobacco/create-tobacco.dto";
 import { Inject, Injector } from "@angular/core";
 import {BrandService} from "../../core/services/brand.service";
-import {Tobacco} from "../../core/dto/tobacco";
+import {Tobacco} from "../../core/dto/tobacco/tobacco";
 
 
 

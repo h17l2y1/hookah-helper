@@ -1,4 +1,4 @@
-export interface Brand {
+export interface BrandLine {
     _id: string;
     name: string;
 }
