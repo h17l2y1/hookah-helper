@@ -7,9 +7,7 @@ export interface CreateTobaccoDto {
     freshness: number;
     rating: number;
     taste: string;
-    madeIn: string;
     fortress: number;
-    recommendedCup: string;
     smokiness: number;
     creationDate: string;
 }

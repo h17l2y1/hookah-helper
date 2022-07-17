@@ -1,25 +1,27 @@
 import brandSchema from "../schemas/brand.schema";
 import {CreateBrandDto} from "../models/brands/create-brand.dto";
 import {UpdateBrandDto} from "../models/brands/update-brand.dto";
+import moment from "moment";
 
-export const create = async (body: CreateBrandDto) => {
+const create = async (body: CreateBrandDto) => {
+    body.creationDate = moment().format("MM/DD/YYYY, HH:mm:ss");
     return await brandSchema.create(body);
 }
 
-export const update = async (id: string, body: UpdateBrandDto) => {
-    return await brandSchema.findByIdAndUpdate(id, body);
+const update = async (id: string, body: UpdateBrandDto) => {
+    await brandSchema.findByIdAndUpdate(id, body);
 }
 
-export const getById = async (id: string) => {
+const getById = async (id: string) => {
     return await brandSchema.findById(id);
 }
 
-export const getAll = async () => {
+const getAll = async () => {
     return await brandSchema.find();
 }
 
-export const remove = async (id: string) => {
-    return await brandSchema.findByIdAndDelete(id);
+const remove = async (id: string) => {
+    await brandSchema.findByIdAndDelete(id);
 }
 
 export default { create, update, getById, getAll, remove };

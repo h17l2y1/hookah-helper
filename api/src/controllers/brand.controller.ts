@@ -7,6 +7,12 @@ export const create = (req: Request, res: Response, next: NextFunction) => {
         .catch((err: Error) => next(err));
 }
 
+export const createWithDependencies = (req: Request, res: Response, next: NextFunction) => {
+    service.createWithDependencies(req.body)
+        .then((data) => res.status(201).send(data))
+        .catch((err: Error) => next(err));
+}
+
 export const update = (req: Request, res: Response, next: NextFunction) => {
     service.update(req.params.id, req.body)
         .then(() => res.status(200).send())

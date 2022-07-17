@@ -1,13 +1,20 @@
 import {CreateBrandLineDto} from "../models/brand-line/create-brand-line.dto";
 import {UpdateBrandLineDto} from "../models/brand-line/update-brand-line.dto";
 import brandLineSchema from "../schemas/brand-line.schema";
+import moment from "moment";
 
 const create = async (body: CreateBrandLineDto) => {
-    return await brandLineSchema.create(body);
+    body.creationDate = moment().format("MM/DD/YYYY, HH:mm:ss");
+    await brandLineSchema.create(body);
+}
+
+const createMany = async (body: Array<CreateBrandLineDto>) => {
+    body.forEach(x => x.creationDate = moment().format("MM/DD/YYYY, HH:mm:ss"));
+    await brandLineSchema.insertMany(body);
 }
 
 const update = async (id: string, body: UpdateBrandLineDto) => {
-    return await brandLineSchema.findByIdAndUpdate(id, body);
+    await brandLineSchema.findByIdAndUpdate(id, body);
 }
 
 const getById = async (id: string) => {
@@ -23,7 +30,7 @@ const getAll = async () => {
 }
 
 const remove = async (id: string) => {
-    return await brandLineSchema.findByIdAndDelete(id);
+    await brandLineSchema.findByIdAndDelete(id);
 }
 
-export default { create, update, getById, getByBrandId, getAll, remove };
+export default { create, createMany, update, getById, getByBrandId, getAll, remove };

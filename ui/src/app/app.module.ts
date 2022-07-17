@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from "ngx-toastr";
 import {ErrorInterceptor} from "./core/services/error-interceptor";
 import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import {MatSelectModule} from "@angular/material/select";
     NgbModule,
     ToastrModule.forRoot(),
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   declarations: [
     AppComponent,

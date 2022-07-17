@@ -12,7 +12,8 @@ import {CreateBrand} from "../../core/dto/brand/create-brand.dto";
 })
 export class CreateBrandComponent implements OnInit {
 
-  public createBrandForm: FormGroup;
+  createBrandForm: FormGroup;
+  private tempId = 0;
 
   constructor(@Inject(Injector) private injector: Injector,
               public dialogRef: MatDialogRef<CreateBrandComponent>,
@@ -31,6 +32,7 @@ export class CreateBrandComponent implements OnInit {
       name: '',
       lines: this.formBuilder.array([
         this.formBuilder.group({
+          tempId: this.formBuilder.control(this.getNextId()),
           name: this.formBuilder.control('')
         })
       ]),
@@ -46,20 +48,32 @@ export class CreateBrandComponent implements OnInit {
   addLine(): void {
     this.getLines.push(
         this.formBuilder.group({
+          tempId: this.formBuilder.control(this.getNextId()),
           name: this.formBuilder.control('')
         })
     );
   }
 
+  private getNextId(){
+    return ++this.tempId;
+  }
+
+  onRemove(tempId: number){
+    this.getLines.removeAt(tempId);
+  }
+
   onSave(): void {
     const request = this.createBrandForm.value as CreateBrand;
+    request.lines = request.lines.map(x => ({ _id: x._id, name: x.name}));
 
-    this.brandService.create(request)
+    this.brandService.createWithDependencies(request).subscribe(() => {
+      this.notificationService.success(`${request.name} created`);
+      this.dialogRef.close();
+    });
   }
 
   onCancel(): void {
     this.dialogRef.close();
   }
-
 
 }

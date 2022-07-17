@@ -4,12 +4,12 @@ import {UpdateTobaccoDto} from "../models/tobacco/update-tobacco.dto";
 import tobaccoSchema from "../schemas/tobacco.schema";
 
 const create = async (body: CreateTobaccoDto) => {
-    body.creationDate = moment().format("MM/DD/YYYY, hh:mm:ss");
-    return await tobaccoSchema.create(body);
+    body.creationDate = moment().format("MM/DD/YYYY, HH:mm:ss");
+    await tobaccoSchema.create(body);
 }
 
 const update = async (id: string, body: UpdateTobaccoDto) => {
-    return await tobaccoSchema.findByIdAndUpdate(id, body);
+    await tobaccoSchema.findByIdAndUpdate(id, body);
 }
 
 const getById = async (id: string) => {
@@ -25,7 +25,7 @@ const getAll = async () => {
 }
 
 const remove = async (id: string) => {
-    return await tobaccoSchema.findByIdAndDelete(id);
+    await tobaccoSchema.findByIdAndDelete(id);
 }
 
 export default { create, update, getById, getByBrandId, getAll, remove };

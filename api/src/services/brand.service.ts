@@ -1,26 +1,36 @@
 import {CreateBrandDto} from "../models/brands/create-brand.dto";
 import {UpdateBrandDto} from "../models/brands/update-brand.dto";
-import repository from "../repositories/brand.repository";
+import brandRepository from "../repositories/brand.repository";
+import brandLineRepository from "../repositories/brand-line.repository";
 
 const create = async (body: CreateBrandDto) => {
-    return await repository.create(body);
+    return await brandRepository.create(body);
+}
+
+const createWithDependencies = async (body: CreateBrandDto) => {
+    const copy = {...body} as CreateBrandDto;
+    copy.lines = [];
+    const brand = await brandRepository.create(copy);
+    body.lines.forEach(x => x.brandId = brand._id);
+    await brandLineRepository.createMany(body.lines);
+    return brand;
 }
 
 const update = async (id: string, body: UpdateBrandDto) => {
-    return await repository.update(id, body);
+    await brandRepository.update(id, body);
 }
 
 const getById = async (id: string) => {
-    return await repository.getById(id);
+    return await brandRepository.getById(id);
 }
 
 const getAll = async () => {
-    return await repository.getAll();
+    return await brandRepository.getAll();
 }
 
 const remove = async (id: string) => {
-    return await repository.remove(id);
+    await brandRepository.remove(id);
 }
 
-export default { create, update, getById, getAll, remove };
+export default { create, createWithDependencies, update, getById, getAll, remove };
 

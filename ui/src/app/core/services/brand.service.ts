@@ -18,6 +18,10 @@ export class BrandService {
     return this.http.post<void>(this.rootUrl, data);
   }
 
+  public createWithDependencies(data: CreateBrand): Observable<void> {
+    return this.http.post<void>(this.rootUrl + '/createWithDependencies', data);
+  }
+
   // public update(data: UpdateBrand): Observable<any> {
   //   return this.http.put<any>(this.rootUrl, data);
   // }

@@ -9,6 +9,7 @@ import {CreateTobacco} from "../../core/dto/tobacco/create-tobacco.dto";
 import { Inject, Injector } from "@angular/core";
 import {BrandService} from "../../core/services/brand.service";
 import {Tobacco} from "../../core/dto/tobacco/tobacco";
+import {Brand} from "../../core/dto/brand/brand";
 
 
 
@@ -19,14 +20,8 @@ import {Tobacco} from "../../core/dto/tobacco/tobacco";
 })
 export class CreateTobaccoComponent implements OnInit {
 
-    // selectedFiles?: FileList;
-    // selectedFileNames: string[] = [];
-    // progressInfos: any[] = [];
-    // message: string[] = [];
-    // previews: string[] = [];
-    // imageInfos?: Observable<any>;
     public createTobaccoForm: FormGroup;
-    public brands: Array<Tobacco>;
+    public brands: Array<Brand>;
     // public lines: Array<TobaccoLine>;
 
     constructor(@Inject(Injector) private injector: Injector,

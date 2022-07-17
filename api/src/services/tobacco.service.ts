@@ -1,29 +1,29 @@
 import {UpdateTobaccoDto} from "../models/tobacco/update-tobacco.dto";
 import {CreateTobaccoDto} from "../models/tobacco/create-tobacco.dto";
-import repository from "../repositories/tobacco.repository";
+import tobaccoRepository from "../repositories/tobacco.repository";
 
 const create = async (body: CreateTobaccoDto) => {
-    return await repository.create(body);
+    await tobaccoRepository.create(body);
 }
 
 const update = async (id: string, body: UpdateTobaccoDto) => {
-    return await repository.update(id, body);
+    await tobaccoRepository.update(id, body);
 }
 
 const getById = async (id: string) => {
-    return await repository.getById(id);
+    return await tobaccoRepository.getById(id);
 }
 
 const getByBrandId = async (id: string) => {
-    return await repository.getByBrandId(id);
+    return await tobaccoRepository.getByBrandId(id);
 }
 
 const getAll = async () => {
-    return await repository.getAll();
+    return await tobaccoRepository.getAll();
 }
 
 const remove = async (id: string) => {
-    return await repository.remove(id);
+    await tobaccoRepository.remove(id);
 }
 
 export default { create, update, getById, getByBrandId, getAll, remove };
