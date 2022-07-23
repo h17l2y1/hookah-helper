@@ -1,0 +1,18 @@
+<div class="image-loader">
+    <div>
+        <img *ngFor='let preview of previews' [src]="preview" class="preview">
+    </div>
+    <mat-form-field>
+        <div>
+            <mat-toolbar>
+                <input matInput [value]="'Select Images'"/>
+                <button mat-flat-button color="primary">Upload</button>
+            </mat-toolbar>
+            <input type="file"
+                   id="fileInput"
+                   name="fileInput"
+                   accept="image/*"
+                   (change)="selectFiles($event)"/>
+        </div>
+    </mat-form-field>
+</div>
