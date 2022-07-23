@@ -9,16 +9,17 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ToastrModule} from "ngx-toastr";
 import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { CreateBrandComponent } from './create-brand/create-brand.component';
 import {MatIconModule} from "@angular/material/icon";
+import { ImageLoaderComponent } from './image-loader/image-loader.component';
 
 @NgModule({
-  declarations: [AdminComponent, CreateTobaccoComponent, CreateBrandComponent],
+  declarations: [AdminComponent, CreateTobaccoComponent, CreateBrandComponent, ImageLoaderComponent],
     imports: [
         CommonModule,
         MatButtonModule,
@@ -33,7 +34,8 @@ import {MatIconModule} from "@angular/material/icon";
         ToastrModule.forRoot(),
         MatOptionModule,
         MatSelectModule,
-        MatIconModule
+        MatIconModule,
+        FormsModule
     ]
 })
 export class AdminModule { }

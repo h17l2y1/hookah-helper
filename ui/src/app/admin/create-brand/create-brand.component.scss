@@ -1,25 +1,33 @@
-.example-full-width {
-  width: 100%;
-}
-
-.brand-name-container{
+.create-tobacco-container {
   display: flex;
-  .add-line-btn {
-    height: 52px;
-    min-width: 120px;
-    margin-left: 15px;
+  .image-loader-container {
+    margin-right: 24px;
   }
-}
 
-.brand-line-container {
-  display: flex;
-
-  .inp-brand-line {
+  .example-full-width {
     width: 100%;
-    margin-right: 20px;
   }
 
-  .btn-remove {
-    margin-top: 5px;
+  .brand-name-container{
+    display: flex;
+    .add-line-btn {
+      height: 52px;
+      min-width: 120px;
+      margin-left: 15px;
+    }
   }
+
+  .brand-line-container {
+    display: flex;
+
+    .inp-brand-line {
+      width: 100%;
+      margin-right: 20px;
+    }
+
+    .btn-remove {
+      margin-top: 5px;
+    }
+  }
+
 }

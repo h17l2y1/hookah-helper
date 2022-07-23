@@ -19,7 +19,8 @@ export class CreateBrandComponent implements OnInit {
               public dialogRef: MatDialogRef<CreateBrandComponent>,
               private notificationService: ToastrService,
               private brandService: BrandService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+  ) {
     this.notificationService = this.injector.get(ToastrService)
   }
 
@@ -27,8 +28,23 @@ export class CreateBrandComponent implements OnInit {
     this.initCreateTobaccoForm();
   }
 
+  onSave(): void {
+    const request = this.createBrandForm.value as CreateBrand;
+    request.lines = request.lines.map(x => ({ _id: x._id, name: x.name}));
+
+    this.brandService.createWithDependencies(request).subscribe(() => {
+      this.notificationService.success(`${request.name} created`);
+      this.dialogRef.close();
+    });
+  }
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
   initCreateTobaccoForm(): void {
     this.createBrandForm = this.formBuilder.group({
+      image: '',
       name: '',
       lines: this.formBuilder.array([
         this.formBuilder.group({
@@ -62,18 +78,20 @@ export class CreateBrandComponent implements OnInit {
     this.getLines.removeAt(tempId);
   }
 
-  onSave(): void {
-    const request = this.createBrandForm.value as CreateBrand;
-    request.lines = request.lines.map(x => ({ _id: x._id, name: x.name}));
-
-    this.brandService.createWithDependencies(request).subscribe(() => {
-      this.notificationService.success(`${request.name} created`);
-      this.dialogRef.close();
-    });
+  setImage(file: File){
+    this.createBrandForm.patchValue({image: file});
   }
 
-  onCancel(): void {
-    this.dialogRef.close();
+  getBase64(file: File) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      //me.modelvalue = reader.result;
+      console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
   }
 
 }
