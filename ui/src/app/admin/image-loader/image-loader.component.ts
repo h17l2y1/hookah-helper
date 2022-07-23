@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
     styleUrls: ['./image-loader.component.scss']
 })
 export class ImageLoaderComponent implements OnInit {
-    @Output() getImage = new EventEmitter<File>();
+    @Output() getImage = new EventEmitter<string | ArrayBuffer>();
 
     selectedFile?: File;
     previews: string[] = [];
@@ -25,10 +25,21 @@ export class ImageLoaderComponent implements OnInit {
         const reader = new FileReader();
         reader.onload = (e: any) => {
             this.previews.push(e.target.result);
+            this.getImage.emit(reader.result);
         };
         reader.readAsDataURL(this.selectedFile);
-        this.getImage.emit(this.selectedFile);
 
+        // let reader = new FileReader();
+        // reader.readAsDataURL(file);
+        // reader.onload = function () {
+        //     //me.modelvalue = reader.result;
+        //     console.log(reader.result);
+        // };
+        // reader.onerror = function (error) {
+        //     console.log('Error: ', error);
+        // };
+
+        // this.getImage.emit(this.selectedFile);
     }
 
     upload(idx: number, file: File): void {

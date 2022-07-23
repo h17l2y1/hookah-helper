@@ -4,6 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {BrandService} from "../../core/services/brand.service";
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {CreateBrand} from "../../core/dto/brand/create-brand.dto";
+import imageToBase64 from 'image-to-base64/browser';
 
 @Component({
   selector: 'app-create-brand',
@@ -44,7 +45,7 @@ export class CreateBrandComponent implements OnInit {
 
   initCreateTobaccoForm(): void {
     this.createBrandForm = this.formBuilder.group({
-      image: '',
+      imageBase64: '',
       name: '',
       lines: this.formBuilder.array([
         this.formBuilder.group({
@@ -78,20 +79,8 @@ export class CreateBrandComponent implements OnInit {
     this.getLines.removeAt(tempId);
   }
 
-  setImage(file: File){
-    this.createBrandForm.patchValue({image: file});
-  }
-
-  getBase64(file: File) {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      //me.modelvalue = reader.result;
-      console.log(reader.result);
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
+  setImage(imageBase64: string | ArrayBuffer){
+    this.createBrandForm.patchValue({imageBase64: imageBase64});
   }
 
 }
