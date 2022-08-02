@@ -1,4 +1,5 @@
 <form [formGroup]="createTobaccoForm" (ngSubmit)="onSave()" class="example-form" *ngIf="brands">
+    <image-loader (getImage)="setImage($event)" class="image-loader-container"></image-loader>
     <div mat-dialog-content class="input-container">
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Назва бренду</mat-label>
@@ -8,21 +9,17 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
-<!--        <mat-form-field class="example-full-width" appearance="fill">-->
-<!--            <mat-label>Лiнiйка</mat-label>-->
-<!--            <mat-select formControlName="lineId">-->
-<!--                <mat-option *ngFor="let line of lines" [value]="line._id" >-->
-<!--                    {{line.name}}-->
-<!--                </mat-option>-->
-<!--            </mat-select>-->
-<!--        </mat-form-field>-->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Лiнiйка</mat-label>
+            <mat-select formControlName="lineId">
+                <mat-option *ngFor="let line of lines" [value]="line._id">
+                    {{line.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Назва тютюну</mat-label>
             <input matInput formControlName="name">
-        </mat-form-field>
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Країна виробник</mat-label>
-            <input matInput formControlName="madeIn">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Опис</mat-label>

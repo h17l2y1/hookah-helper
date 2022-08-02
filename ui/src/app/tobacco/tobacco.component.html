@@ -11,7 +11,9 @@
                         <div class="row" *ngIf="tobaccos">
                             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" *ngFor="let tobacco of tobaccos">
                                 <div class="font-icon-detail" (click)="onTobacco(tobacco._id)">
-                                    <i class="pe-7s-album"></i>
+                                    <div class="brand-image-container">
+                                        <img class="brand-image" src="{{tobacco.imageBase64}}">
+                                    </div>
                                     <div>{{tobacco.name}}</div>
                                 </div>
                             </div>

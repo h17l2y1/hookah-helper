@@ -23,7 +23,7 @@ export class TobaccoComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       let id = this.route.snapshot.paramMap.get('id');
       if (id){
-        this.tobaccoService.getAllByBrandId(id).subscribe(response => {
+        this.tobaccoService.getByBrandId(id).subscribe(response => {
           this.tobaccos = response;
         });
       }

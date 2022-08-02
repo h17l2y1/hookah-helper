@@ -4,7 +4,6 @@ import {ToastrService} from "ngx-toastr";
 import {BrandService} from "../../core/services/brand.service";
 import {FormArray, FormBuilder, FormGroup} from '@angular/forms';
 import {CreateBrand} from "../../core/dto/brand/create-brand.dto";
-import imageToBase64 from 'image-to-base64/browser';
 
 @Component({
   selector: 'app-create-brand',

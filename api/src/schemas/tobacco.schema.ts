@@ -5,7 +5,12 @@ const tobaccoSchema = new Schema({
     brandId: {
         type: Schema.Types.ObjectId,
         ref: "Brands"
-    },    lineId: {type: String, required: true},
+    },
+    lineId: {
+        type: Schema.Types.ObjectId,
+        ref: "BrandLines"
+    },
+    imageBase64: {type: String, required: true},
     creationDate: {type: String, required: true},
     name: {type: String, required: true},
     sweetness: {type: Number},

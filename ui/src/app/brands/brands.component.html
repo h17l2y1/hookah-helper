@@ -11,7 +11,9 @@
                         <div class="row" *ngIf="brands">
                             <div class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6" *ngFor="let brand of brands">
                                 <div class="font-icon-detail" (click)="onBrand(brand._id)">
-                                    <i class="pe-7s-album"></i>
+                                    <div class="brand-image-container">
+                                        <img class="brand-image" src="{{brand.imageBase64}}">
+                                    </div>
                                     <div>{{brand.name}}</div>
                                 </div>
                             </div>

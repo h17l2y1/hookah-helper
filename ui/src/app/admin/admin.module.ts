@@ -16,7 +16,7 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import { CreateBrandComponent } from './create-brand/create-brand.component';
 import {MatIconModule} from "@angular/material/icon";
-import { ImageLoaderComponent } from './image-loader/image-loader.component';
+import { ImageLoaderComponent } from '../core/shared/image-loader/image-loader.component';
 
 @NgModule({
   declarations: [AdminComponent, CreateTobaccoComponent, CreateBrandComponent, ImageLoaderComponent],

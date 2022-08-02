@@ -26,7 +26,6 @@ export class BrandsComponent implements OnInit {
   }
 
   public onBrand(brandId: string) {
-    console.log(brandId);
     this.router.navigateByUrl(`/tobacco/${brandId}`);
   }
 

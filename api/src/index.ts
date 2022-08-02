@@ -19,7 +19,7 @@ const options: cors.CorsOptions = {
 };
 
 app.use(cors(options));
-app.use(express.json());
+app.use(express.json({limit: '5mb'}));
 app.use(baseRouter);
 
 app.listen(config.port, () => console.log('Server running at http://localhost:3000/'));

@@ -19,7 +19,7 @@ export const getById = (req: Request, res: Response, next: NextFunction) => {
         .catch((err: Error) => next(err));
 }
 
-export const getByBrandIdWithTobacco = (req: Request, res: Response, next: NextFunction) => {
+export const getByBrandId = (req: Request, res: Response, next: NextFunction) => {
     service.getByBrandId(req.params.id)
         .then((data) => res.status(200).send(data))
         .catch((err: Error) => next(err));

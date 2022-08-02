@@ -1,5 +1,6 @@
 export interface CreateTobaccoDto {
     brandId: string;
+    imageBase64: string;
     name: string;
     sweetness: number;
     acidity: number;

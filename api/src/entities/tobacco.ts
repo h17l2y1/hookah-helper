@@ -2,6 +2,7 @@ import {BaseEntity} from "./base";
 
 export interface Tobacco extends BaseEntity {
     brandId: string;
+    imageBase64: string;
     name: string;
     lineId: string;
     sweetness: number;

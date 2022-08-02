@@ -6,7 +6,7 @@ const brandLineRouter = Router();
 brandLineRouter.post('/', create);
 brandLineRouter.put('/:id', update);
 brandLineRouter.get('/:id', getById);
-brandLineRouter.get('/:id', getByBrandId);
+brandLineRouter.get('/brand/:id', getByBrandId);
 brandLineRouter.get('/', getAll);
 brandLineRouter.delete('/:id', remove);
 

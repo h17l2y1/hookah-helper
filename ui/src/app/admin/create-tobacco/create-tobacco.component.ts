@@ -7,8 +7,9 @@ import {CreateTobacco} from "../../core/dto/tobacco/create-tobacco.dto";
 import { Inject, Injector } from "@angular/core";
 import {BrandService} from "../../core/services/brand.service";
 import {Brand} from "../../core/dto/brand/brand";
-
-
+import { forkJoin } from 'rxjs';
+import { BrandLine } from '../../core/dto/brand-line/brand-line';
+import { BrandLineService } from '../../core/services/brand-line.service';
 
 @Component({
     selector: 'app-create-tobacco',
@@ -19,35 +20,43 @@ export class CreateTobaccoComponent implements OnInit {
 
     public createTobaccoForm: FormGroup;
     public brands: Array<Brand>;
+    public lines: Array<BrandLine>;
 
     constructor(@Inject(Injector) private injector: Injector,
                 public dialogRef: MatDialogRef<CreateTobaccoComponent>,
                 private tobaccoService: TobaccoService,
                 private notificationService: ToastrService,
                 private brandService: BrandService,
+                private brandLineService: BrandLineService
                 ) {
         this.notificationService = this.injector.get(ToastrService)
     }
 
     ngOnInit(): void {
         this.initCreateTobaccoData();
-        // this.imageInfos = this.uploadService.getFiles();
     }
 
     initCreateTobaccoData(): void {
         this.brandService.getAll().subscribe(response => {
             this.brands = response;
             this.initCreateTobaccoForm();
-        })
+        });
     }
 
     initCreateTobaccoForm(): void {
         this.createTobaccoForm = new FormGroup({
+            imageBase64: new FormControl('', [Validators.required]),
             brandId: new FormControl('', [Validators.required]),
-            lineId: new FormControl(''),
+            lineId: new FormControl('', [Validators.required]),
             name: new FormControl('', [Validators.required]),
-            madeIn: new FormControl('', [Validators.required]),
             description: new FormControl(''),
+        });
+
+        this.createTobaccoForm.controls['brandId'].valueChanges.subscribe(value => {
+            this.brandLineService.getByBrandId(value).subscribe( response => {
+                this.lines = response;
+                }
+            );
         });
     }
 
@@ -66,11 +75,14 @@ export class CreateTobaccoComponent implements OnInit {
 
         let newTobacco = this.createTobaccoForm.value as CreateTobacco;
 
-        this.tobaccoService.create(newTobacco).subscribe({
-            next(x) {
-                this.notificationService.success(`${newTobacco.name} created`);
-            }
+        this.tobaccoService.create(newTobacco).subscribe(() => {
+            this.notificationService.success(`${newTobacco.name} created`);
+            this.dialogRef.close();
         });
 
+    }
+
+    setImage(imageBase64: string | ArrayBuffer){
+        this.createTobaccoForm.patchValue({imageBase64: imageBase64});
     }
 }

@@ -22,8 +22,8 @@ export class TobaccoService {
     return this.http.get<Array<Tobacco>>(this.rootUrl);
   }
 
-  public getAllByBrandId(brandId: string): Observable<Array<Tobacco>> {
-    return this.http.get<Array<Tobacco>>(this.rootUrl + `/getAllByBrandId/${brandId}`);
+  public getByBrandId(brandId: string): Observable<Array<Tobacco>> {
+    return this.http.get<Array<Tobacco>>(this.rootUrl + `/brand/${brandId}`);
   }
 
   public getAllById(id: string): Observable<Tobacco> {
