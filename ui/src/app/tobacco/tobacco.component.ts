@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TobaccoService} from "../core/services/tobacco.service";
 import {Tobacco} from "../core/dto/tobacco/tobacco";
 import {ActivatedRoute} from "@angular/router";
@@ -15,9 +15,10 @@ export class TobaccoComponent implements OnInit {
   public tobaccos: Array<Tobacco>;
   private sub: any;
 
-  constructor(private readonly tobaccoService: TobaccoService,
-              private route: ActivatedRoute,
-              public dialog: MatDialog) { }
+  constructor(
+      private readonly tobaccoService: TobaccoService,
+      private route: ActivatedRoute,
+      public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.sub = this.route.params.subscribe(params => {
@@ -26,6 +27,7 @@ export class TobaccoComponent implements OnInit {
         this.tobaccoService.getByBrandId(id).subscribe(response => {
           this.tobaccos = response;
         });
+        return;
       }
       this.tobaccoService.getAll().subscribe(response => {
         this.tobaccos = response;
